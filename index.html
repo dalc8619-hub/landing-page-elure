@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELURE | Ritual Sensorial de Café</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        [cite_start]/* --- VARIABLES DE COLOR [cite: 33] --- */
+        :root {
+            --marfil-claro: #F8F2EC;   
+            --marron-cafe: #8E542C;    
+            --cafe-oscuro: #3A2416;    
+            --verde-salvia: #9CAD9E;   
+            --beige-arena: #D9C3A7;    
+            --blanco-transparente: rgba(255, 255, 255, 0.85);
+            --cafe-transparente: rgba(58, 36, 22, 0.9);
+        }
+
+        /* --- ESTILOS GENERALES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--marfil-claro);
+            color: var(--cafe-oscuro);
+            font-family: 'Lato', sans-serif; [cite_start]/* [cite: 36] */
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif; [cite_start]/* [cite: 35] */
+            font-weight: 600;
+            text-transform: uppercase; [cite_start]/* [cite: 31] */
+            letter-spacing: 2px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ESTILO DE BOTÓN PREMIUM */
+        .btn {
+            display: inline-block;
+            background-color: var(--marron-cafe);
+            color: var(--marfil-claro);
+            padding: 16px 40px;
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            border: 2px solid var(--marron-cafe);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            margin-top: 25px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background-color: var(--marfil-claro);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: -1;
+        }
+
+        .btn:hover {
+            color: var(--marron-cafe);
+            box-shadow: 0 10px 20px -10px rgba(142, 84, 44, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .btn:hover::after {
+            height: 100%;
+        }
+
+        /* --- HEADER TRANSPARENTE --- */
+        header {
+            padding: 25px 0;
+            text-align: center;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(248, 242, 236, 0.9), transparent);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--cafe-oscuro);
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* --- HERO SECTION DE IMPACTO (PARALLAX) --- */
+        .hero {
+            /* Usando la imagen de textura de granos para el fondo */
+            background-image: linear-gradient(rgba(58, 36, 22, 0.7), rgba(58, 36, 22, 0.5)), url('image_9.png');
+            height: 100vh;
+            min-height: 700px;
+            background-attachment: fixed; /* Efecto Parallax */
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--marfil-claro);
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            color: var(--marfil-claro);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            font-weight: 300;
+        }
+
+        /* --- SECCIONES CON EFECTO "GLASS" --- */
+        .section-glass {
+            padding: 100px 0;
+            background-color: var(--marfil-claro);
+            background-image: url('image_5.png'); /* Textura sutil de fondo */
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: soft-light;
+        }
+
+        /* TARJETAS DE VALORES "FLOTANTES" */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+        }
+
+        .value-card {
+            background: var(--blanco-transparente);
+            backdrop-filter: blur(10px); /* Efecto de vidrio esmerilado */
+            -webkit-backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(142, 84, 44, 0.15);
+        }
+
+        .value-card .icon {
+            font-size: 2.5rem;
+            color: var(--verde-salvia);
+            margin-bottom: 20px;
+        }
+
+        /* --- SECCIÓN DIVIDIDA (Flexible) --- */
+        .split-section {
+            padding: 120px 0;
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .split-section.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .text-content {
+            flex: 1;
+        }
+
+        .text-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: var(--marron-cafe);
+        }
+        
+        .text-content p {
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            color: rgba(58, 36, 22, 0.8);
+        }
+
+        .image-content {
+            flex: 1;
+            position: relative;
+        }
+
+        .image-content img {
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            transition: transform 0.5s ease;
+        }
+        
+        .image-content:hover img {
+            transform: scale(1.02);
+        }
+
+        /* --- COMPARACIÓN --- */
+        .comparison-section {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--marfil-claro), #f0e6da);
+        }
+        
+        .comparison-img-container {
+            max-width: 700px;
+            margin: 60px auto;
+            position: relative;
+        }
+
+        .comparison-img-container::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--beige-arena);
+            border-radius: 12px;
+            z-index: 0;
+        }
+
+        .comparison-img {
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        /* --- PRODUCTO --- */
+        .product-price {
+            font-size: 2rem;
+            color: var(--marron-cafe);
+            font-family: 'Cormorant Garamond', serif;
+            margin: 15px 0;
+            display: block;
+            font-weight: 700;
+        }
+
+        .ingredients-list li {
+            margin-bottom: 12px;
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        .ingredients-list li::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--marron-cafe);
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--cafe-oscuro);
+            color: var(--beige-arena);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        /* --- BOTÓN FLOTANTE WHATSAPP --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            width: 65px;
+            height: 65px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .whatsapp-float img {
+            width: 38px;
+            height: 38px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 2.8rem; }
+            .hero { background-attachment: scroll; /* Desactiva parallax en móviles para rendimiento */ }
+            .split-section { flex-direction: column; gap: 50px; padding: 80px 0; }
+            .split-section.reverse { flex-direction: column; }
+            .image-content { width: 100%; }
+            .text-content { text-align: center; }
+            .comparison-img-container::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header data-aos="fade-down" data-aos-duration="1000">
+        <div class="logo">ELURE</div>
+    </header>
+
+    <section class="hero">
+        <div class="container" data-aos="zoom-out" data-aos-duration="1200">
+            <h1>UN RITUAL SENSORIAL QUE DESPIERTA CUERPO Y MENTE</h1>
+            <p>Cuidarte puede ser un ritual, no una rutina. Transforma tu piel con el poder del café colombiano y despierta tus sentidos.</p>
+            <a href="https://wa.me/573000000000?text=Hola%20ELURE,%20quisiera%20empezar%20mi%20ritual%20☕" class="btn" target="_blank">Comenzar el Ritual</a>
+        </div>
+    </section>
+
+    <section class="section-glass">
+        <div class="container">
+            <div class="values-grid">
+                <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon">🌿</div>
+                    <h3>100% Natural</h3>
+                    <p>Ingredientes simples, reales y sin artificios.</p>
+                </div>
+                <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon">☕</div>
+                    <h3>Sensorialidad</h3>
+                    <p>Texturas y aromas que se sienten.</p>
+                </div>
+                <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="icon">🌍</div>
+                    <h3>Responsabilidad</h3>
+                    <p>Sin microplásticos ni químicos dañinos.</p>
+                </div>
+                <div class="value-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="icon">💎</div>
+                    <h3>Autenticidad</h3>
+                    <p>Resultados visibles y honestos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container split-section">
+        <div class="text-content" data-aos="fade-right">
+            <h2>¿Tu piel pide un respiro?</h2>
+            <p>La rutina y el estrés apagan tu luz natural. ELURE no es solo un exfoliante; es una pausa necesaria para renovar tu energía y tu piel desde la primera aplicación.</p>
+            <p><strong>Despídete de la piel opaca y la textura irregular.</strong></p>
+        </div>
+        <div class="image-content" data-aos="fade-left">
+            <img src="exfoliante ELURE para IG 45 2.png" alt="Problema y Solución Piel ELURE">
+        </div>
+    </section>
+
+    <section class="comparison-section">
+        <div class="container" data-aos="fade-up">
+            <h2 style="color: var(--marron-cafe);">Eleva tus estándares</h2>
+            <p style="max-width: 600px; margin: 0 auto;">No todos los exfoliantes son iguales. Elige la pureza del café colombiano frente a los sintéticos.</p>
+            
+            <div class="comparison-img-container" data-aos="zoom-in" data-aos-delay="200">
+                <img src="comparacion.png" alt="Comparativa ELURE vs Otras Marcas" class="comparison-img">
+            </div>
+        </div>
+    </section>
+
+    <section class="container split-section reverse">
+        <div class="text-content" data-aos="fade-left">
+            <h2>Tu momento de pausa</h2>
+            <p>Convierte tu baño en un santuario. El aroma del café, la textura en tu piel... un recordatorio de que cuidarte puede ser placentero.</p>
+            <p>Aplica sobre la piel húmeda con masajes circulares, respira profundo y enjuaga para revelar una suavidad increíble.</p>
+        </div>
+        <div class="image-content" data-aos="fade-right">
+            <img src="bañera.png" alt="Ritual de baño ELURE">
+        </div>
+    </section>
+
+    <section class="section-glass" id="comprar">
+        <div class="container split-section">
+            <div class="image-content" data-aos="fade-up-right">
+                <img src="34647567.png" alt="Kit Exfoliante ELURE Premium">
+            </div>
+            <div class="text-content" data-aos="fade-up-left">
+                <h4 style="color: var(--verde-salvia); letter-spacing: 3px;">ICONO DE LA MARCA</h4>
+                <h2>ELURE Original - Café & Aceites Botánicos</h2>
+                <span class="product-price">$ 45.000 COP</span>
+                <p>La combinación perfecta de café molido natural y aceites prensados en frío. Exfoliación efectiva que nutre profundamente, dejando un acabado luminoso y sedoso.</p>
+                
+                <ul class="ingredients-list" style="margin: 30px 0;">
+                    <li>Café 100% Colombiano (Arábica)</li>
+                    <li>Aceite de Almendras Dulces</li>
+                    <li>Vitamina E Antioxidante</li>
+                </ul>
+
+                <a href="https://wa.me/573000000000?text=Hola%20ELURE,%20quiero%20pedir%20el%20exfoliante%20Original%20✨" class="btn" target="_blank">
+                    Comprar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 80px 0; text-align: center; background: var(--blanco);">
+        <div class="container" data-aos="fade-up">
+            <h3 style="margin-bottom: 40px; color: var(--marron-cafe);">Únete al Ritual en @Elure.Skincare</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <img src="image_6.png" style="height: 250px; object-fit: cover;" alt="Instagram ELURE 1" data-aos="flip-left" data-aos-delay="100">
+                <img src="image_5.png" style="height: 250px; object-fit: cover;" alt="Instagram ELURE 2" data-aos="flip-left" data-aos-delay="200">
+                <img src="image_7.png" style="height: 250px; object-fit: cover;" alt="Instagram ELURE 3" data-aos="flip-left" data-aos-delay="300">
+                <img src="image_11.png" style="height: 250px; object-fit: cover;" alt="Instagram ELURE 4" data-aos="flip-left" data-aos-delay="400">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container" data-aos="fade-in">
+            <div class="logo" style="color: var(--marfil-claro); margin-bottom: 20px;">ELURE</div>
+            <p>&copy; 2025 ELURE. Todos los derechos reservados.</p>
+            <p style="font-size: 0.9rem; margin-top: 15px; opacity: 0.7;">Un ritual sensorial hecho en Colombia.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/573000000000?text=Hola%20ELURE,%20tengo%20una%20pregunta%20sobre%20el%20ritual" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800, /* Duración de la animación en milisegundos */
+            once: true, /* La animación solo ocurre una vez al bajar */
+            offset: 100 /* Empieza la animación un poco antes de que el elemento llegue arriba */
+        });
+    </script>
+
+</body>
+</html>
